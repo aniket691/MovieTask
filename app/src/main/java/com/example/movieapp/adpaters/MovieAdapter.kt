@@ -4,12 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.movieapp.R
 import com.example.movieapp.models.Movie
 import com.example.movieapp.repository.MovieRepository
@@ -17,7 +16,7 @@ import com.example.movieapp.ui.home.HomeFragment
 import com.example.movieapp.viewmodels.MovieDatabaseViewModel
 
 
-class MovieAdapter(val viewModel: MovieDatabaseViewModel) :
+class MovieAdapter( val viewModel: MovieDatabaseViewModel) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private var movieList = emptyList<Movie>()
@@ -27,8 +26,9 @@ class MovieAdapter(val viewModel: MovieDatabaseViewModel) :
         val mvYear: TextView = itemView.findViewById(R.id.mvYear)
         val mvRunTime: TextView = itemView.findViewById(R.id.mvRunTime)
         val mvCast: TextView = itemView.findViewById(R.id.mvCast)
-        val btnFav: TextView = itemView.findViewById(R.id.buttonFav)
-        val btnDel: TextView = itemView.findViewById(R.id.buttonDel)
+        val imgView: ImageView = itemView.findViewById(R.id.thumbnail)
+        val btnFav: ImageButton = itemView.findViewById(R.id.buttonFav)
+        val btnDel: ImageButton = itemView.findViewById(R.id.buttonDel)
     }
 
 
@@ -51,6 +51,14 @@ class MovieAdapter(val viewModel: MovieDatabaseViewModel) :
         holder.mvRunTime.text = movieList[position].Runtime
         holder.mvYear.text = movieList[position].Year
         holder.mvCast.text = movieList[position].Cast
+
+//        Glide
+//            .with(context)
+//            .load(movieList[position].moviePoster)
+//            .centerCrop()
+//            .placeholder(R.drawable.profile_pic)
+//            .into(holder.imgView);
+
 
         holder.itemView.setOnClickListener {
             onItemClickListener?.let { it(movieList[position]) }

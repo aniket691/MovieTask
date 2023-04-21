@@ -68,16 +68,27 @@ class HomeFragment : Fragment() {
         //Data from retrofit
         var movieList: ArrayList<Movie> = ArrayList()
         var m1 = Movie(
-            "tt8144778", "Dave Castro|Justin Bergh",
-            "Heber Cannon", "Documentary", "https://fastly.picsum.photos/id/559/1280/720.jpg?hmac=5PsS2cP3yBSt00WIAylUosxRT4h4S9BfWw42BdcPZlY",
-            "7.1", "119", "n 2017 the fittest athletes on Earth took on the unknown and unknowable during four of the most intense days of competition in CrossFit Games history. &quot;The Redeemed and the Dominant: ...",
-            "In 2017 the fittest athletes on Earth took on the unknown and unknowable during four of the most intense days of competition in CrossFit Games history. \\\"The Redeemed and the Dominant: Fittest on Earth \\\" captures all the drama as top athletes resembling chiseled Grecian gods descend on Madison, Wisconsin, to face a series of trials. Hercules faced 12; they take on 13. Emotions run high as a throng of Australian athletes rise to the top. By the end of the competition, some learn tough lessons-that all that glitters isn't gold, or even bronze-and some learn that they're even stronger than they realized. The best among them enter the pantheon of CrossFit giants and earn the right to call themselves the \\\"Fittest on Earth.\\\"\"", "Titl1", "Write1", "year1", "yt1")
+            "tt8144778",
+            "Dave Castro|Justin Bergh",
+            "Heber Cannon",
+            "Documentary",
+            "https://fastly.picsum.photos/id/559/1280/720.jpg?hmac=5PsS2cP3yBSt00WIAylUosxRT4h4S9BfWw42BdcPZlY",
+            "7.1",
+            "119",
+            "n 2017 the fittest athletes on Earth took on the unknown and unknowable during four of the most intense days of competition in CrossFit Games history. &quot;The Redeemed and the Dominant: ...",
+            "In 2017 the fittest athletes on Earth took on the unknown and unknowable during four of the most intense days of competition in CrossFit Games history. \\\"The Redeemed and the Dominant: Fittest on Earth \\\" captures all the drama as top athletes resembling chiseled Grecian gods descend on Madison, Wisconsin, to face a series of trials. Hercules faced 12; they take on 13. Emotions run high as a throng of Australian athletes rise to the top. By the end of the competition, some learn tough lessons-that all that glitters isn't gold, or even bronze-and some learn that they're even stronger than they realized. The best among them enter the pantheon of CrossFit giants and earn the right to call themselves the \\\"Fittest on Earth.\\\"\"",
+            "Titl1",
+            "Write1",
+            "year1",
+            "yt1"
+        )
 
         var m2 = Movie(
             "2", "Genre2",
-            "Director2", "genree2", "mp2",
+            "Director2", "genree2", "https://picsum.photos/1280/720",
             "rat2", "rt2", "shortSum2",
-            "summ2", "Titl2", "Write2", "year2", "yt2")
+            "summ2", "Titl2", "Write2", "year2", "yt2"
+        )
 
         //viewModel
         movieViewModel = ViewModelProvider(this).get(MovieDatabaseViewModel::class.java)
