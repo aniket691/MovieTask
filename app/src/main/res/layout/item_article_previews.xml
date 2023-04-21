@@ -7,109 +7,54 @@
     android:padding="8dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="8dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="12dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        app:cardCornerRadius="@dimen/card_movie_radius">
 
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/img"
-                android:layout_width="500dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_dashboard_black_24dp" />
+                android:id="@+id/thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/movie_cover_height"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitXY" />
 
             <TextView
-                android:id="@+id/mvTitle"
-                android:layout_width="wrap_content"
+                android:id="@+id/title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_margin="10dp"
-                android:text="title"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
+                android:layout_below="@+id/thumbnail"
+                android:paddingLeft="@dimen/movie_title_padding"
+                android:paddingTop="@dimen/movie_title_padding"
+                android:paddingRight="@dimen/movie_title_padding"
+                android:text="some text"
+                android:textColor="@color/movie_title"
+                android:textSize="@dimen/movie_title" />
 
             <TextView
-                android:id="@+id/mvYear"
-                android:layout_width="wrap_content"
+                android:id="@+id/userrating"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_margin="10dp"
-                android:text="year"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_below="@+id/title"
+                android:paddingLeft="@dimen/movie_title_padding"
+                android:paddingRight="@dimen/movie_title_padding"
+                android:text="some text"
+                android:paddingBottom="@dimen/user_rating_padding_bottom"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/user_rating" />
 
-            <TextView
-                android:id="@+id/mvRunTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_margin="10dp"
-                android:text="runtime"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/mvCast"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_margin="10dp"
-                android:text="cast"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal">
-
-
-                <Button
-                    android:id="@+id/buttonFav"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Favoutite" />
-
-
-                <Button
-                    android:id="@+id/buttonDel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Delete" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
+        </RelativeLayout>
 
 
     </androidx.cardview.widget.CardView>
 
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+

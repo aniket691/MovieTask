@@ -13,12 +13,12 @@
     <fragment
         android:id="@+id/navigation_favourite"
         android:name="com.example.movieapp.ui.FavouriteFragment"
-        android:label="fragment_favourite"
+        android:label="@string/title_favourite"
         tools:layout="@layout/fragment_favourite" />
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.movieapp.ui.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
 </navigation>

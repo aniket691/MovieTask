@@ -14,11 +14,13 @@ import com.example.movieapp.R
 import com.example.movieapp.models.Movie
 import com.example.movieapp.repository.MovieRepository
 import com.example.movieapp.ui.home.HomeFragment
+import com.example.movieapp.viewmodels.MovieDatabaseViewModel
 
 
-class MovieAdapter(val requiredContext: Context, val movieList: List<Movie>) :
+class MovieAdapter(val viewModel: MovieDatabaseViewModel) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
+    private var movieList = emptyList<Movie>()
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val mvTitle: TextView = itemView.findViewById(R.id.mvTitle)
@@ -55,20 +57,26 @@ class MovieAdapter(val requiredContext: Context, val movieList: List<Movie>) :
         }
 
         holder.btnDel.setOnClickListener(View.OnClickListener { view ->
-            Toast.makeText(
-                requiredContext,
-                "Del Clicked",
-                Toast.LENGTH_SHORT
-            ).show();
+//            Toast.makeText(
+//                requiredContext,
+//                "Del Clicked",
+//                Toast.LENGTH_SHORT
+//            ).show();
+            viewModel.deleteData(movieList[position])
         })
+//
+//        holder.btnFav.setOnClickListener(View.OnClickListener { view ->
+//            Toast.makeText(
+//                requiredContext,
+//                "Fav Clicked",
+//                Toast.LENGTH_SHORT
+//            ).show();
+//        })
+    }
 
-        holder.btnFav.setOnClickListener(View.OnClickListener { view ->
-            Toast.makeText(
-                requiredContext,
-                "Fav Clicked",
-                Toast.LENGTH_SHORT
-            ).show();
-        })
+    fun setData(movie: List<Movie>) {
+        this.movieList = movie
+        notifyDataSetChanged()
     }
 
     private var onItemClickListener: ((Movie) -> Unit)? = null
@@ -76,6 +84,8 @@ class MovieAdapter(val requiredContext: Context, val movieList: List<Movie>) :
     fun setOnItemClickListener(listener: (Movie) -> Unit) {
         onItemClickListener = listener
     }
+
+
 }
 
 

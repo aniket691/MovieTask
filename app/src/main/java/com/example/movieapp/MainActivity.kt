@@ -11,8 +11,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.movieapp.databinding.ActivityMainBinding
 import com.example.movieapp.db.MovieDatabase
 import com.example.movieapp.repository.MovieRepository
-import com.example.movieapp.ui.MovieViewModel
-import com.example.movieapp.ui.MovieViewModelProviderFactory
+import com.example.movieapp.viewmodels.MovieViewModel
+import com.example.movieapp.viewmodels.MovieViewModelProviderFactory
 
 class MainActivity : AppCompatActivity() {
 
