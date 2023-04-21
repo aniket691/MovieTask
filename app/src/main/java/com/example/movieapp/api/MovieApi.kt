@@ -11,14 +11,4 @@ interface MovieApi {
     @GET("/1.json")
     //suspend fun getMovies(): Call<Movie>
     fun getMovies(): Call<MovieResponse>
-
-    @GET("/1.json")
-    fun getMovies1(): Callback<List<Movie>>
-
-    @GET("/posts")
-    fun getData(): Call<List<MyDataItem>>
-
-    @GET("/1.json")
-    fun getMovieList(): MovieResponse
-
 }

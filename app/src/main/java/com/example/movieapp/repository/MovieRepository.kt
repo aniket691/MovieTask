@@ -6,6 +6,7 @@ import com.example.movieapp.db.MovieDatabase
 class MovieRepository(
     val db: MovieDatabase
 ) {
-        suspend fun getMoviesRep() = RetrofitInstance.api.getMovies()
+    //repository function for getting data from the server
+    suspend fun getMoviesRep() = RetrofitInstance.api.getMovies()
 
 }

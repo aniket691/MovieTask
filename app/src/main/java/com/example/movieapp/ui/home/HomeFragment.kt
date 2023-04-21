@@ -1,5 +1,6 @@
 package com.example.movieapp.ui.home
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,6 +52,7 @@ class HomeFragment : Fragment() {
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
+        //creating binding instance for fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -65,7 +67,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Data from retrofit
+        //placeholder Data for retrofit
         var movieList: ArrayList<Movie> = ArrayList()
         var m1 = Movie(
             "tt8144778",
@@ -77,9 +79,9 @@ class HomeFragment : Fragment() {
             "119",
             "n 2017 the fittest athletes on Earth took on the unknown and unknowable during four of the most intense days of competition in CrossFit Games history. &quot;The Redeemed and the Dominant: ...",
             "In 2017 the fittest athletes on Earth took on the unknown and unknowable during four of the most intense days of competition in CrossFit Games history. \\\"The Redeemed and the Dominant: Fittest on Earth \\\" captures all the drama as top athletes resembling chiseled Grecian gods descend on Madison, Wisconsin, to face a series of trials. Hercules faced 12; they take on 13. Emotions run high as a throng of Australian athletes rise to the top. By the end of the competition, some learn tough lessons-that all that glitters isn't gold, or even bronze-and some learn that they're even stronger than they realized. The best among them enter the pantheon of CrossFit giants and earn the right to call themselves the \\\"Fittest on Earth.\\\"\"",
-            "Titl1",
+            "The Redeemed and the Dominant: Fittest on Earth",
             "Write1",
-            "year1",
+            "2018",
             "yt1"
         )
 
@@ -93,17 +95,19 @@ class HomeFragment : Fragment() {
         //viewModel
         movieViewModel = ViewModelProvider(this).get(MovieDatabaseViewModel::class.java)
 
-        //add to database
+        //adding data to database
         movieViewModel.addMovie(m1)
         movieViewModel.addMovie(m2)
 
         //fetch from database
-        val adapter = MovieAdapter(movieViewModel)
+        val adapter = MovieAdapter(requireContext(), movieViewModel)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.VERTICAL, false
         )
+
+        //setting live data to the adapter
         movieViewModel.getReadAllData().observe(viewLifecycleOwner, Observer { movie ->
             adapter.setData(movie)
         })
@@ -112,6 +116,7 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        //setting binding null on destroy
         _binding = null
     }
 }

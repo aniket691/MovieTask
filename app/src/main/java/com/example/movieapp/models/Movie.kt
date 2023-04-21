@@ -3,7 +3,7 @@ package com.example.movieapp.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
+//Entity class of Movie
 @Entity(
     tableName = "movies"
 )

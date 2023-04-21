@@ -28,6 +28,7 @@ private const val ARG_PARAM2 = "param2"
 class FavouriteFragment : Fragment() {
 
 
+    //binding instance
     private var _binding: FragmentFavouriteBinding? = null
 
     private val binding get() = _binding!!
@@ -45,7 +46,7 @@ class FavouriteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        //creating binding instance for accessing the view
         _binding = FragmentFavouriteBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -56,16 +57,18 @@ class FavouriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //creating view model
         movieViewModel = ViewModelProvider(this).get(MovieDatabaseViewModel::class.java)
 
-        //fetch from database
-        val adapter = MovieAdapter(movieViewModel)
+        //fetching data from database
+        val adapter = MovieAdapter(requireContext(),movieViewModel)
 
         binding.favouriteRecyclerView.adapter = adapter
         binding.favouriteRecyclerView.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.VERTICAL, false
         )
+        //setting livedata to the adapter
         movieViewModel.getReadAllData().observe(viewLifecycleOwner, Observer { movie ->
             adapter.setData(movie)
         })

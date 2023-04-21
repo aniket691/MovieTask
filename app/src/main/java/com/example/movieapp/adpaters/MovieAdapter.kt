@@ -16,12 +16,15 @@ import com.example.movieapp.ui.home.HomeFragment
 import com.example.movieapp.viewmodels.MovieDatabaseViewModel
 
 
-class MovieAdapter( val viewModel: MovieDatabaseViewModel) :
+class MovieAdapter(val context: Context, val viewModel: MovieDatabaseViewModel) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
+    //movie list which will hold the movies
     private var movieList = emptyList<Movie>()
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        //getting the view to be rendered
         val mvTitle: TextView = itemView.findViewById(R.id.mvTitle)
         val mvYear: TextView = itemView.findViewById(R.id.mvYear)
         val mvRunTime: TextView = itemView.findViewById(R.id.mvRunTime)
@@ -33,66 +36,57 @@ class MovieAdapter( val viewModel: MovieDatabaseViewModel) :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+        //get xm file of the rows of recyclerview
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.item_article_previews,
             parent, false
         )
-
-
         return MovieViewHolder(view)
     }
 
     override fun getItemCount(): Int {
+        //returns size of movies
         return movieList.size
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        //binding the data with views
         holder.mvTitle.text = movieList[position].Title
         holder.mvRunTime.text = movieList[position].Runtime
         holder.mvYear.text = movieList[position].Year
         holder.mvCast.text = movieList[position].Cast
 
-//        Glide
-//            .with(context)
-//            .load(movieList[position].moviePoster)
-//            .centerCrop()
-//            .placeholder(R.drawable.profile_pic)
-//            .into(holder.imgView);
-
-
-        holder.itemView.setOnClickListener {
-            onItemClickListener?.let { it(movieList[position]) }
-        }
+        //setting the images to the views
+        Glide
+            .with(context)
+            .load(movieList[position].moviePoster)
+            .centerCrop()
+            .placeholder(R.drawable.profile_pic)
+            .into(holder.imgView);
 
         holder.btnDel.setOnClickListener(View.OnClickListener { view ->
-//            Toast.makeText(
-//                requiredContext,
-//                "Del Clicked",
-//                Toast.LENGTH_SHORT
-//            ).show();
             viewModel.deleteData(movieList[position])
+            Toast.makeText(
+                context,
+                "Deleted",
+                Toast.LENGTH_SHORT
+            ).show();
         })
-//
-//        holder.btnFav.setOnClickListener(View.OnClickListener { view ->
-//            Toast.makeText(
-//                requiredContext,
-//                "Fav Clicked",
-//                Toast.LENGTH_SHORT
-//            ).show();
-//        })
+
+        holder.btnFav.setOnClickListener(View.OnClickListener { view ->
+            Toast.makeText(
+                context,
+                "Fav Clicked",
+                Toast.LENGTH_SHORT
+            ).show();
+        })
     }
 
+    //notifying data set change to the list
     fun setData(movie: List<Movie>) {
         this.movieList = movie
         notifyDataSetChanged()
     }
-
-    private var onItemClickListener: ((Movie) -> Unit)? = null
-
-    fun setOnItemClickListener(listener: (Movie) -> Unit) {
-        onItemClickListener = listener
-    }
-
 
 }
 

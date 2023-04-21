@@ -20,10 +20,11 @@ abstract class MovieDatabase : RoomDatabase() {
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
-            instance ?: createDatabse(context).also { instance = it }
+            //creating the instance by using synchronized block so that only single object of database will be created
+            instance ?: createDatabase(context).also { instance = it }
         }
 
-        private fun createDatabse(context: Context) =
+        private fun createDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
                 MovieDatabase::class.java,
