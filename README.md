@@ -1,6 +1,4 @@
-��#� �M�o�v�i�e�T�a�s�k�
-�
-�
+#Movie Task
 
 ## Screenshots
 
