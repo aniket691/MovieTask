@@ -9,6 +9,6 @@ import retrofit2.http.GET
 interface MovieApi {
 
     @GET("/1.json")
-    //suspend fun getMovies(): Call<Movie>
     fun getMovies(): Call<MovieResponse>
+//    fun getMovies(): Call<MovieResponse>
 }

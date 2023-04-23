@@ -8,7 +8,7 @@ import com.example.movieapp.models.Movie
 interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(movie: Movie): Long
+    suspend fun upsert(movie: List<Movie>)
 
     @Query("SELECT * FROM movies")
     fun getAllMovies(): LiveData<List<Movie>>

@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieapp.R
 import com.example.movieapp.models.Movie
-import com.example.movieapp.repository.MovieRepository
-import com.example.movieapp.ui.home.HomeFragment
 import com.example.movieapp.viewmodels.MovieDatabaseViewModel
+import com.squareup.picasso.Picasso
 
 
 class MovieAdapter(val context: Context, val viewModel: MovieDatabaseViewModel) :
@@ -51,18 +48,13 @@ class MovieAdapter(val context: Context, val viewModel: MovieDatabaseViewModel) 
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         //binding the data with views
-        holder.mvTitle.text = movieList[position].Title
-        holder.mvRunTime.text = movieList[position].Runtime
-        holder.mvYear.text = movieList[position].Year
-        holder.mvCast.text = movieList[position].Cast
+        holder.mvTitle.text = movieList[position].title
+        holder.mvRunTime.text = movieList[position].runtime.toString()
+        holder.mvYear.text = movieList[position].year.toString()
+        holder.mvCast.text = movieList[position].cast
 
         //setting the images to the views
-        Glide
-            .with(context)
-            .load(movieList[position].moviePoster)
-            .centerCrop()
-            .placeholder(R.drawable.profile_pic)
-            .into(holder.imgView);
+        Picasso.get().load(movieList[position].moviePoster).into(holder.imgView);
 
         holder.btnDel.setOnClickListener(View.OnClickListener { view ->
             viewModel.deleteData(movieList[position])

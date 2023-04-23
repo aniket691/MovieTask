@@ -21,9 +21,9 @@ class MovieDatabaseViewModel(application: Application) : AndroidViewModel(applic
         readAllData = databaseRepository.readAllData
     }
 
-    fun addMovie(movie: Movie) {
+    fun addMovie(movieList: List<Movie>) {
         viewModelScope.launch(Dispatchers.IO) {
-            databaseRepository.insertMovie(movie)
+            databaseRepository.insertMovie(movieList)
         }
     }
 

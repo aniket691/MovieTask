@@ -10,8 +10,8 @@ class MovieDatabaseRepository(private val movieDao: MovieDao) {
     val readAllData: LiveData<List<Movie>> = movieDao.getAllMovies()
 
     //function for inserting movie into the database
-    suspend fun insertMovie(movie: Movie) {
-        movieDao.upsert(movie)
+    suspend fun insertMovie(movieList: List<Movie>) {
+        movieDao.upsert(movieList)
     }
 
     //function for deleting movie from the database
